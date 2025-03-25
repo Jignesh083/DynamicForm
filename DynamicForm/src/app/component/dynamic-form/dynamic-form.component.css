@@ -1,0 +1,207 @@
+  /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    padding: 20px;
+  }
+  
+  /* Container for the dynamic form section */
+  .dynamic-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .form-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.5em;
+  }
+  
+  /* Section for selecting fields */
+  .field-selection {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9f1ff;
+    border-radius: 8px;
+  }
+
+
+
+  
+  .field-selection h3 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+  }
+  
+  .field-selection div {
+    margin-bottom: 10px;
+    margin-left: 15px;
+    padding-top:4px;
+  }
+  
+  .field-selection input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  /* Section for selected fields */
+  .selected-fields {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9f1ff;
+    border-radius: 8px;
+  }
+  
+  .selected-fields h3 {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+  }
+  
+  .selected-fields ul {
+    display: flex;
+    list-style-type: none;
+  }
+  
+  .selected-fields li {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  
+  .selected-fields button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .selected-fields button:hover {
+    background-color: #ff1a1a;
+  }
+  
+  /* Form Fields Styling */
+  .dynamic-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dynamic-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    margin-left: 10px;
+  }
+
+  
+  /* .dynamic-form input[type="text"],
+  .dynamic-form input[type="email"],
+  .dynamic-form input[type="number"] { */
+  .dynamic-form input{
+    padding: 1.5% 31%;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-left:10px;
+  }
+  
+  .dynamic-form input[type="text"]:focus,
+  .dynamic-form input[type="email"]:focus,
+  .dynamic-form input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Submit Button */
+  .dynamic-form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+  }
+  
+  .dynamic-form button[type="submit"]:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .dynamic-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+
+  .form-header .close{
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px 10px;
+    top:20px;
+  }
+
+
+
+
+  .form-title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9f1ff;
+    border-radius: 8px;
+  }
+
+
+
+
+
+  #formTitle{
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    padding: 5px 20px;
+  }
+
+
+  .create-btn{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+  }
+  
+
+
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  

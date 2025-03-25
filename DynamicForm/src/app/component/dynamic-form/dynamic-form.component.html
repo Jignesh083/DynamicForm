@@ -1,0 +1,123 @@
+<div class="form-title">
+  <label for="formTitle">Enter Form Title:</label>
+  <input type="text" id="formTitle" [(ngModel)]="formTitle" placeholder="Enter form title here" />
+</div>
+
+<div class="field-selection"> 
+  <h3>Select Fields:</h3>
+  <div *ngFor="let field of formFields">
+    <input type="checkbox" [(ngModel)]="field.selected" (change)="onFieldSelect(field)" /> {{ field.name }}
+  </div>
+
+  <div>
+    <input type="checkbox" [(ngModel)]="educationDetailsSelected" (change)="onEducationDetailsChange()" />
+    <label for="educationDetails">Education Details</label>
+  </div>
+</div>
+
+<div class="selected-fields">
+  <h3>Selected Fields:</h3>
+  <ul>
+    <li *ngFor="let field of selectedFields">
+      {{ field.name }}
+      <button (click)="onFieldSelect(field)">Remove</button>
+    </li>
+  </ul>
+</div>
+
+<!-- Create Form Button -->
+<button *ngIf="selectedFields.length > 0" class="create-btn" (click)="onCreateForm()">Create</button>
+
+<div class="dynamic-forms">
+  <div *ngFor="let form of createdForms; let i = index" class="dynamic-form">
+    <div class="form-header">
+      <h2>{{ form.title }}</h2>
+      <button class="close" type="button" (click)="closeForm(i)">X</button>
+    </div>
+    <form [formGroup]="form.dynamicForm" (ngSubmit)="onSubmit(i)">
+      <div *ngFor="let field of form.selectedFields">
+        <!-- Education Fields -->
+        <div *ngIf="field.type === 'education'">
+          <div class="education-section">
+            <h3>Education Details</h3>
+            <div *ngIf="educationDetailsSelected">
+              <button (click)="addQualification(form)">Add Qualification</button>
+            </div>
+
+            <div *ngIf="form.qualifications.length > 0">
+              <button type="button" (click)="removeQualification(form, form.qualifications.length - 1)">
+                Remove Last Qualification
+              </button>
+            </div>
+
+            <!-- Dynamically added qualifications for each form -->
+            <div *ngFor="let qualification of form.qualifications; let idx = index">
+              <div [formGroup]="form.dynamicForm">
+                <!-- Qualification Label -->
+                <div class="qualification-header">
+                  <h4>{{ qualification.qualificationLevel }}:</h4>
+                </div>
+
+                <!-- Institute Name -->
+                <div class="input-field">
+                  <label>{{ qualification.qualificationLevel }} Institute Name:</label>
+                  <input [formControlName]="qualification.schoolName" type="text" />
+                  <div *ngIf="form.dynamicForm.get(qualification.schoolName)?.invalid && form.dynamicForm.get(qualification.schoolName)?.touched">
+                    <small class="error">Institute Name is required.</small>
+                  </div>
+                </div>
+
+                <!-- Passing Year -->
+                <div class="input-field">
+                  <label>{{ qualification.qualificationLevel }} Passing Year:</label>
+                  <input [formControlName]="qualification.passingYear" type="number" />
+                  <div *ngIf="form.dynamicForm.get(qualification.passingYear)?.invalid && form.dynamicForm.get(qualification.passingYear)?.touched">
+                    <small class="error">Passing Year is required.</small>
+                  </div>
+                </div>
+
+                <!-- Percentage -->
+                <div class="input-field">
+                  <label>{{ qualification.qualificationLevel }} Percentage:</label>
+                  <input [formControlName]="qualification.percentage" type="number" />
+                  <div *ngIf="form.dynamicForm.get(qualification.percentage)?.invalid && form.dynamicForm.get(qualification.percentage)?.touched">
+                    <small class="error">Percentage is required.</small>
+                  </div>
+                </div>
+
+                <!-- Marksheet -->
+                <div class="input-field">
+                  <label>{{ qualification.qualificationLevel }} Marksheet:</label>
+                  <input [formControlName]="qualification.marksheet" type="file" />
+                  <div *ngIf="form.dynamicForm.get(qualification.marksheet)?.invalid && form.dynamicForm.get(qualification.marksheet)?.touched">
+                    <small class="error">Marksheet is required.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Fields -->
+        <div *ngIf="field.type !== 'education'">
+          <label>{{ field.name }}:</label>
+          <input *ngIf="field.type !== 'radio'" [formControlName]="field.name" [type]="field.type" />
+          <div *ngIf="form.dynamicForm.get(field.name)?.invalid && form.dynamicForm.get(field.name)?.touched">
+            <small class="error">{{ field.name }} is required.</small>
+          </div>
+
+          <div *ngIf="field.type === 'radio'">
+            <label *ngFor="let option of field.options">
+              <input type="radio" [formControlName]="field.name" [value]="option" /> {{ option }}
+            </label>
+            <div *ngIf="form.dynamicForm.get(field.name)?.invalid && form.dynamicForm.get(field.name)?.touched">
+              <small class="error">{{ field.name }} is required.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!form.dynamicForm.valid">Submit</button>
+    </form>
+  </div>
+</div>
